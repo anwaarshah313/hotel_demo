@@ -40,6 +40,59 @@
     <script>
         const modelViewer = document.querySelector('model-viewer');
 
+        // Function to get query parameter
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Get the model name from URL (e.g., ar.html?model=burger.glb)
+        const modelName = getQueryParam('model');
+
+        if (modelName) {
+            // Assume models are in the root directory or a specific folder
+            // You can change './ + modelName' to match your folder structure
+            modelViewer.src = `./${modelName}`;
+            modelViewer.alt = `A 3D model of ${modelName.replace('.glb', '')}`;
+
+            // Optional: Update title
+            document.title = `AR Viewer - ${modelName}`;
+        } else {
+            // Fallback default
+            console.log('No model specified, using default.');
+            // modelViewer.src = "./pizza.glb"; // Keep default or leave as is
+        }
+
+        // Animation Logic: "Pop" effect when loaded
+        // Note: This mainly affects the inline view and WebXR mode if supported dynamically.
+        // SceneViewer (Android native) has its own placement animation behavior which we can't override.
+        modelViewer.addEventListener('load', () => {
+            // Reset scale to 0
+            modelViewer.scale = '0 0 0';
+
+            // Animate to 1 1 1
+            let start = null;
+            const duration = 1000; // 1 second
+
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+                // Elastic ease-out function
+                const p = Math.min(progress / duration, 1);
+                const ease = 1 - Math.pow(1 - p, 4); // Quartic ease-out simply, or use elastic:
+                // const elastic = p === 0 ? 0 : p === 1 ? 1 : Math.pow(2, -10 * p) * Math.sin((p * 10 - 0.75) * (2 * Math.PI) / 3) + 1;
+
+                const val = ease;
+                modelViewer.scale = `${val} ${val} ${val}`;
+
+                if (progress < duration) {
+                    window.requestAnimationFrame(step);
+                }
+            }
+
+            window.requestAnimationFrame(step);
+        });
+
         // Example of handling error or unsupported AR
         // model-viewer doesn't always fire a simple 'unsupported' event for AR hardware,
         // but we can check if AR is available via feature detection if needed.

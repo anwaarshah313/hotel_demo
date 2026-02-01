@@ -1,16 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Pizza Experience</title>
+    <title>3D Food Menu</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="landing-container">
-        <h1>Delicious 3D Pizza</h1>
-        <p style="margin-bottom: 2rem;">Experience our menu in Augmented Reality right on your table.</p>
-        <a href="ar.html" class="ar-button">View Pizza in AR</a>
+        <h1>Our 3D Menu</h1>
+        <p style="margin-bottom: 2rem;">Tap "View in AR" to see our delicious dishes on your table!</p>
+
+        <div class="menu-grid">
+            <!-- Item 1 -->
+            <div class="menu-item">
+                <div class="menu-image-placeholder">🍕</div>
+                <div class="menu-content">
+                    <h3 class="menu-title">Classic Pizza</h3>
+                    <p class="menu-description">Our signature pepperoni pizza with extra cheese.</p>
+                    <a href="ar.html?model=pizza.glb" class="ar-button">View in AR</a>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="menu-item">
+                <div class="menu-image-placeholder">🍔</div>
+                <div class="menu-content">
+                    <h3 class="menu-title">Juicy Burger</h3>
+                    <p class="menu-description">Double beef patty with fresh lettuce and secret sauce.</p>
+                    <!-- User to add burger.glb later -->
+                    <a href="ar.html?model=burger.glb" class="ar-button">View in AR</a>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="menu-item">
+                <div class="menu-image-placeholder">🥤</div>
+                <div class="menu-content">
+                    <h3 class="menu-title">Cold Soda</h3>
+                    <p class="menu-description">Refreshing cola served ice cold.</p>
+                    <!-- User to add soda.glb later -->
+                    <a href="ar.html?model=soda.glb" class="ar-button">View in AR</a>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="menu-item">
+                <div class="menu-image-placeholder">🍰</div>
+                <div class="menu-content">
+                    <h3 class="menu-title">Cheese Cake</h3>
+                    <p class="menu-description">Creamy new york style cheese cake slice.</p>
+                    <!-- User to add cake.glb later -->
+                    <a href="ar.html?model=cake.glb" class="ar-button">View in AR</a>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
