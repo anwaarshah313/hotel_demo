@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Pizza Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Import the model-viewer component -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</head>
+<body>
+    <div class="ar-container">
+        <!-- 
+          Model Viewer Configuration:
+          - src: URL to the 3D model. (Using a placeholder Astronaut for now, REPLACE with your pizza.glb)
+          - ar: Enables AR functionality.
+          - ar-modes: Prioritizes WebXR, then Scene Viewer, then Quick Look (iOS).
+          - camera-controls: Allows touch interaction.
+          - tone-mapping: "commerce" is good for products.
+          - shadow-intensity: Adds realism.
+          - exposure: Adjusts brightness.
+        -->
+        <model-viewer 
+            src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" 
+            alt="A 3D model of a Pizza"
+            ar 
+            ar-modes="webxr scene-viewer quick-look" 
+            camera-controls 
+            tone-mapping="commerce" 
+            poster="poster.webp" 
+            shadow-intensity="1"
+            exposure="1.0"
+            shadow-softness="1"
+            environment-image="neutral"
+            auto-rotate>
+            
+            <div class="error-message" id="ar-error">
+                AR is not supported on this device.
+            </div>
+
+            <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; padding: 8px;">
+                👋 Activate AR
+            </button>
+        </model-viewer>
+    </div>
+
+    <script>
+        const modelViewer = document.querySelector('model-viewer');
+        
+        // Example of handling error or unsupported AR
+        // model-viewer doesn't always fire a simple 'unsupported' event for AR hardware, 
+        // but we can check if AR is available via feature detection if needed.
+        // For now, the component handles the "View in your space" button visibility automatically.
+    </script>
+</body>
+</html>
