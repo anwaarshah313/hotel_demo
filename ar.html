@@ -22,8 +22,8 @@
           - shadow-intensity: Adds realism.
           - exposure: Adjusts brightness.
         -->
-        <model-viewer src="./pizza.glb" alt="A 3D model of a Pizza" ar ar-modes="scene-viewer webxr quick-look"
-            ar-scale="auto" ar-placement="floor" camera-controls tone-mapping="commerce" poster="poster.webp"
+        <model-viewer src="./pizza.glb" alt="A 39D model of a Pizza" ar ar-modes="scene-viewer webxr quick-look"
+            ar-scale="fixed" ar-placement="floor" camera-controls tone-mapping="commerce" poster="poster.webp"
             shadow-intensity="1" exposure="1.0" shadow-softness="1" environment-image="neutral" auto-rotate>
 
             <button slot="ar-button"
@@ -70,19 +70,19 @@
             // Reset scale to 0
             modelViewer.scale = '0 0 0';
 
-            // Animate to 1 1 1
+            // Animate to 0.3 0.3 0.3 (30%)
             let start = null;
             const duration = 1000; // 1 second
+            const targetScale = 0.3;
 
             function step(timestamp) {
                 if (!start) start = timestamp;
                 const progress = timestamp - start;
                 // Elastic ease-out function
                 const p = Math.min(progress / duration, 1);
-                const ease = 1 - Math.pow(1 - p, 4); // Quartic ease-out simply, or use elastic:
-                // const elastic = p === 0 ? 0 : p === 1 ? 1 : Math.pow(2, -10 * p) * Math.sin((p * 10 - 0.75) * (2 * Math.PI) / 3) + 1;
+                const ease = 1 - Math.pow(1 - p, 4);
 
-                const val = ease;
+                const val = ease * targetScale;
                 modelViewer.scale = `${val} ${val} ${val}`;
 
                 if (progress < duration) {
