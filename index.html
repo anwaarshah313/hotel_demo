@@ -20,7 +20,7 @@
                 <div class="menu-content">
                     <h3 class="menu-title">Classic Pizza</h3>
                     <p class="menu-description">Our signature pepperoni pizza with extra cheese.</p>
-                    <a href="ar.html?model=pizza.glb" class="ar-button">View in AR</a>
+                    <a href="ar.html?model=pizza.glb" class="ar-button" id="pizza-link">View in AR</a>
                 </div>
             </div>
 
@@ -58,6 +58,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pizzaLink = document.getElementById('pizza-link');
+            // Simple iOS detection
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+            if (isIOS) {
+                console.log("iOS detected. Switching to pizza-iphone.glb");
+                // Preserve existing query params or pathname structure if needed, but here simple replace is fine
+                pizzaLink.href = "ar.html?model=pizza-iphone.glb";
+            } else {
+                console.log("Non-iOS device. Keeping default pizza.glb");
+            }
+        });
+    </script>
 </body>
 
 </html>
