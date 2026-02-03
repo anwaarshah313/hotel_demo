@@ -1,94 +1,209 @@
 /* Global Styles */
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #121212;
 }
 
-/* Landing Page Styles */
-.landing-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+h1,
+h2,
+h3 {
+    margin: 0;
+    font-weight: 700;
 }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #d35400;
-}
-
-/* Menu Grid */
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+/* Header & Logo */
+header {
+    background-color: #d62300;
+    /* Pizza Hut Red-ish */
     padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.menu-item {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.menu-item:hover {
-    transform: translateY(-5px);
-}
-
-.menu-image-placeholder {
-    height: 200px;
-    background-color: #ddd;
+.logo-container {
+    background-color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888;
-    font-size: 3rem;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.menu-content {
-    padding: 1.5rem;
-    flex-grow: 1;
+.logo-text {
+    font-family: 'Segoe UI', sans-serif;
+    /* Simplified for now */
+    font-weight: 900;
+    color: #d62300;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* Container */
+.menu-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Section Common Styles */
+.menu-section {
+    margin-bottom: 2.5rem;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #121212;
+    margin-bottom: 1rem;
+    border-bottom: 3px solid #d62300;
+    display: inline-block;
+    padding-bottom: 0.2rem;
+    text-transform: uppercase;
+}
+
+/* Card Common Styles */
+.food-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    /* Aspect ratio for the box */
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    background-color: #ddd;
+    text-decoration: none;
+    display: block;
+}
+
+.food-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.food-card:hover img {
+    transform: scale(1.05);
+}
+
+.food-name-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    color: white;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    box-sizing: border-box;
+}
+
+/* Starters Layout: 2 items side-by-side, 1 item below full width */
+.starters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.starters-grid .food-card:nth-child(3) {
+    grid-column: 1 / -1;
+    /* Span full width */
+    aspect-ratio: 21 / 9;
+    /* Wider for full width item */
+}
+
+/* Pasta Layout: Stacked vertically */
+.pasta-list {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 1rem;
 }
 
-.menu-title {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.5rem;
-    color: #2c3e50;
+.pasta-list .food-card {
+    width: 100%;
+    aspect-ratio: 21 / 9;
 }
 
-.menu-description {
-    color: #666;
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
+/* Pizza Layout: Category w/ size columns */
+.pizza-item {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.ar-button {
-    display: inline-block;
+.pizza-header {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.pizza-sizes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.size-btn {
+    flex: 1;
+    min-width: 60px;
+    text-align: center;
+    padding: 0.8rem 0.5rem;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     text-decoration: none;
-    background-color: #e67e22;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.size-btn:hover {
+    background-color: #d62300;
     color: white;
-    padding: 12px 24px;
-    font-size: 1rem;
-    border-radius: 50px;
-    transition: background-color 0.3s;
-    align-self: center;
+    border-color: #d62300;
 }
 
-.ar-button:hover {
-    background-color: #d35400;
+/* Drinks Layout: 2x2 Window (Grid) */
+.drinks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
 }
 
-/* AR Page Styles */
+.drinks-grid .food-card {
+    aspect-ratio: 1 / 1;
+    /* Square for window look */
+}
+
+/* Desserts Layout: 2 side-by-side, then 2 stacked full width */
+.desserts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.desserts-grid .food-card:nth-child(3),
+.desserts-grid .food-card:nth-child(4) {
+    grid-column: 1 / -1;
+    aspect-ratio: 21 / 9;
+}
+
+
+/* AR Page Styles Re-integration */
 .ar-container {
     width: 100%;
     height: 100vh;
@@ -100,7 +215,6 @@ model-viewer {
     height: 100%;
 }
 
-/* AR Prompt Styles */
 model-viewer>#ar-prompt {
     position: absolute;
     left: 50%;
